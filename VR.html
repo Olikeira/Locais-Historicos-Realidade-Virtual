@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Locais Históricos</title>
+  <script src="./lib/aframe.min.js"></script>
+  <style>
+    body { 
+      margin: 0; 
+      font-family: 'Roboto', sans-serif; 
+      background-color: #f3f4f6;
+    }
+    .button-container {
+      position: absolute;
+      bottom: 5%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      display: flex;
+      gap: 15px;
+    }
+    .button-container button {
+      padding: 15px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(145deg, #6a11cb, #2575fc);
+      color: #fff; 
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); 
+      transition: background 0.3s, transform 0.2s, box-shadow 0.2s; 
+    }
+    .button-container button:hover {
+      background: linear-gradient(145deg, #2575fc, #6a11cb);
+      transform: translateY(-3px); 
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3); 
+    }
+    .button-container .active {
+      background: linear-gradient(145deg, #2ecc71, #27ae60); 
+    }
+    .button-container .inactive {
+      background: linear-gradient(145deg, #e74c3c, #c0392b); 
+    }
+    .fade {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      opacity: 0;
+      transition: opacity 1s;
+      pointer-events: none;
+      z-index: 10000;
+    }
+    .disclaimer {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #ffd700;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+          } 
+  </style>
+</head>
+<body>
+  <div class="button-container">
+    <button onclick="changeEnvironment('#skyTextureGrecia')">Atenas  Grécia</button>
+    <button onclick="changeEnvironment('#skyTextureStonehenge')">Stonehenge    Inglaterra</button>
+    <button onclick="changeEnvironment('#skyTextureTajmahal')">Taj Mahal    Índia</button>
+    <button onclick="changeEnvironment('#skyTexturePiramides')">Pirâmides    Egito</button>
+    <button onclick="changeEnvironment('#skyTexturePalacio')">Palácio de Versalhes    França</button>
+    <button id="autoChangeButton" class="inactive" onclick="toggleAutoChange()">Troca Automática</button>
+  </div>
+  <div id="fade" class="fade"></div>
+  <a-scene>
+    <a-assets>
+      <img id="skyTextureGrecia" src="./img/Grecia.jpg">
+      <img id="skyTextureStonehenge" src="./img/Stonehenge.jpg">
+      <img id="skyTextureTajmahal" src="./img/tajmahal.jpg">
+      <img id="skyTexturePiramides" src="./img/Piramides.jpg">
+      <img id="skyTexturePalacio" src="./img/PalacioVersalles.jpg">      
+    </a-assets>
+    <a-sky id="sky" src="#skyTextureGrecia" rotation="0 -130 0"></a-sky>
+    <a-camera look-controls="reverseTouchDrag: true"></a-camera>
+  </a-scene>
+  <script>
+    let autoChangeInterval;
+    const environments = [
+      '#skyTextureGrecia',
+      '#skyTextureStonehenge',
+      '#skyTextureTajmahal',
+      '#skyTexturePiramides',
+      '#skyTexturePalacio'
+    ];
+    let currentEnvironmentIndex = 0;
+
+    function changeEnvironment(textureId) {
+      const sky = document.getElementById('sky');
+      const fade = document.getElementById('fade');
+
+      fade.style.opacity = 1;
+      setTimeout(() => {
+        if (sky) {
+          sky.setAttribute('src', textureId);
+        } else {
+          console.error('Element with id "sky" not found');
+        }
+        fade.style.opacity = 0;
+      }, 1000);
+    }
+
+    function autoChangeEnvironment() {
+      currentEnvironmentIndex = (currentEnvironmentIndex + 1) % environments.length;
+      changeEnvironment(environments[currentEnvironmentIndex]);
+    }
+
+    function toggleAutoChange() {
+      const button = document.getElementById('autoChangeButton');
+      if (autoChangeInterval) {
+        clearInterval(autoChangeInterval);
+        autoChangeInterval = null;
+        button.classList.remove('active');
+        button.classList.add('inactive');
+      } else {
+        autoChangeInterval = setInterval(autoChangeEnvironment, 3500); 
+        button.classList.remove('inactive');
+        button.classList.add('active');
+      }
+    }
+  </script>
+     <div class="disclaimer">Aviso: As imagens são meramente representações dos locais e não são imagens reais.</div>
+</body>
+</html>

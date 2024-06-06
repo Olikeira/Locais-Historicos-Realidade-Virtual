@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - Locais Históricos</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+    
+    body { 
+      margin: 0; 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      height: 100vh; 
+      font-family: 'Montserrat', sans-serif; 
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: #fff; 
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      max-width: 600px;
+    }
+
+    .title {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .description {
+      font-size: 18px;
+      font-weight: 400;
+      margin-bottom: 40px;
+      line-height: 1.5;
+    }
+
+    .start-button {
+      padding: 15px 30px;
+      font-size: 20px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #ff6b6b;
+      color: #fff;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+    }
+
+    .start-button:hover {
+      background-color: #ee5253;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .fade-out {
+      animation: fadeOut 1s forwards;
+    }
+
+    .disclaimer {
+      font-size: 14px;
+      margin-top: 20px;
+      color: #ffd700;
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="title">Bem-vindo aos Locais Históricos</div>
+    <div class="description">Explore alguns dos lugares mais incríveis do mundo em uma experiência de realidade virtual.</div>
+    <button class="start-button" onclick="startVR()">Iniciar Experiência VR</button>
+    <div class="disclaimer">Aviso: As imagens são meramente representações dos locais e não são imagens reais.</div>
+  </div>
+  <script>
+    function startVR() {
+      document.querySelector('.start-button').classList.add('fade-out');
+      setTimeout(() => {
+        window.location.href = 'VR.html';
+      }, 1000); 
+    }
+  </script>
+</body>
+</html>

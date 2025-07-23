@@ -3,7 +3,7 @@ Bem-vindo ao projeto de realidade virtual para a experiência de visitação de 
 Acesso ao Projeto
 Para acessar a experiência de realidade virtual, basta clicar no link abaixo:
 
-https://olikeira.github.io/RVTrabalho/
+https://olikeira.github.io/Locais-Historicos-Realidade-Virtual
 
 Funcionalidades
 Exploração Interativa: Navegue por locais históricos detalhados em um ambiente 3D interativo.

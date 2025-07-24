@@ -34,7 +34,6 @@ Este projeto foi desenvolvido como parte de um trabalho de exploração das capa
 * **Facilidade de Acesso:** Não é necessário baixar nada. Acesse diretamente pelo seu navegador.
 
 ## 📸 Demonstração Visual
-*(Adicione aqui um screenshot da sua cena em VR! Isso vai deixar o README muito mais atrativo.)*
 <p align="center">
   <img width="1856" height="949" alt="Image" src="https://github.com/user-attachments/assets/9703961e-c844-4380-8b30-5825488ebf36" /> alt="Demonstração da cena em Realidade Virtual" width="700">
 </p>
